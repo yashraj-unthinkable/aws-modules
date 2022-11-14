@@ -45,7 +45,7 @@ resource "aws_instance" "this" {
 
 # create elastic ip to attach to EC2 using EIP module
 module "eip" {
-  source = "../eip"
+  source = "https://github.com/yashrajdighe/aws-modules/tree/main/eip"
   count  = var.create && var.attach_eip ? 1 : 0
   tags   = merge({ "Name" = var.name }, var.tags)
 }
