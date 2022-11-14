@@ -162,7 +162,7 @@ resource "aws_cloudwatch_log_group" "flow_log" {
 
 # create iam role using iam_role module
 module "iam_role" {
-  source             = "git::https://github.com/yashrajdighe/aws-modules/iam//iam_role"
+  source             = "git::https://github.com/yashrajdighe/aws-modules//iam/iam_role"
   count              = var.create_vpc && local.create_flow_log_cloudwatch_iam_role ? 1 : 0
   name               = local.iam_role_name
   assume_role_policy = data.aws_iam_policy_document.flow_log_cloudwatch_assume_role[0].json
@@ -171,7 +171,7 @@ module "iam_role" {
 
 # create iam policy using iam_policy module
 module "iam_policy" {
-  source      = "git::https://github.com/yashrajdighe/aws-modules/iam//iam_policy"
+  source      = "git::https://github.com/yashrajdighe/aws-modules//iam/iam_policy"
   count       = var.create_vpc && local.create_flow_log_cloudwatch_iam_role ? 1 : 0
   name        = local.iam_policy_name
   description = local.iam_policy_description
